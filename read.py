@@ -14,9 +14,10 @@ def get_content(filename):
     tree = ET.parse(filename)
 
     root = tree.getroot()
-
-    for w in root.iter('w'):
-        content.write(w.text)
+    for sent in root.iter('s'):
+        for item in sent.itertext():
+            content.write(item)
+        content.write(" ")
 
 
 for file in os.listdir(os.getcwd()):
